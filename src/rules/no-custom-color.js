@@ -1,28 +1,7 @@
 import isStyledTagname from '../common/isStyledTagname'
+import parser from '../parser'
 
-const getNodeStyles = node => {
-  const [firstQuasi, ...quasis] = node.quasi.quasis
-  // remove line break added to the first quasi
-  const lineBreakCount = node.quasi.loc.start.line - 1
-  let styles = `${'\n'.repeat(lineBreakCount)}${' '.repeat(
-    node.quasi.loc.start.column + 1
-  )}${firstQuasi.value.raw}`
-
-  // replace expression by spaces and line breaks
-  quasis.forEach(({ value, loc }, idx) => {
-    const prevLoc = idx === 0 ? firstQuasi.loc : quasis[idx - 1].loc
-    const lineBreaksCount = loc.start.line - prevLoc.end.line
-    const spacesCount =
-      loc.start.line === prevLoc.end.line
-        ? loc.start.column - prevLoc.end.column + 2
-        : loc.start.column + 1
-    styles = `${styles}${' '}${'\n'.repeat(lineBreaksCount)}${' '.repeat(
-      spacesCount
-    )}${value.raw}`
-  })
-
-  return styles
-}
+const isVariable = value => /\$.*/.test(value)
 
 export const noCustomColor = {
   meta: {
@@ -34,8 +13,21 @@ export const noCustomColor = {
     return {
       TaggedTemplateExpression(node) {
         if (isStyledTagname(node)) {
-          return context.report({
-            messageId: 'useToken'
+          const { parsedCSS } = parser(node)
+
+          parsedCSS.nodes.forEach(rules => {
+            rules.nodes.forEach(rule => {
+              const loc = rule.source.start
+
+              if (rule.prop === 'color' && !isVariable(rule.value)) {
+                context.report({
+                  loc,
+                  node,
+                  messageId: 'useToken'
+                })
+              }
+
+            })
           })
         }
       }

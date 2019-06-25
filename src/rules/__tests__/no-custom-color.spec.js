@@ -5,18 +5,23 @@ describe('No custom color', function() {
   ruleTester.run('no-custom-color', noCustomColor, {
     valid: [
       {
-        code:
-          'const test = styled.div`color: ${({ theme }) => theme.orbit.colorTextPrimary`;'
+        code: `const button = styled.button\`
+        color: \${({ theme, isPrimary }) => \
+        (isPrimary ? \
+        theme.orbit.colorTextPrimary : \
+        theme.orbit.colorTextSecondary)};
+        height: 200px; 
+        width: 300px;\``
       },
-      {
-        code: `const test = styled.button\`
-        color: \${({ theme }) => theme.orbit.colorTextPrimary}};\``
-      },
-      {
-        code: `const test = styled.div\`
-        color: \${({ theme, primary }) => (primary ? theme.orbit.colorTextPrimary : theme.orbit.colorTextSecondary)};
-        \``
-      }
+      // {
+      //   code: `const test = styled.button\`
+      //   color: \${({ theme }) => theme.orbit.colorTextPrimary}};\``
+      // },
+      // {
+      //   code: `const test = styled.div\`
+      //   color: \${({ theme, primary }) => (primary ? theme.orbit.colorTextPrimary : theme.orbit.colorTextSecondary)};
+      //   \``
+      // }
     ],
     invalid: [
       {
