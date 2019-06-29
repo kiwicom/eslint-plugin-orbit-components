@@ -23,6 +23,7 @@
     }
   },
   "dependencies": {
+    "@kiwicom/orbit-design-tokens": "^0.6.4",
     "requireindex": "~1.1.0"
   },
   "devDependencies": {

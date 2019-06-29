@@ -1,7 +1,7 @@
 import isStyledTagname from '../common/isStyledTagname'
 import parser from '../parser'
 
-const isVariable = value => /\$.*/.test(value)
+const isOrbitToken = value => /\$token/.test(value)
 
 export const noCustomColor = {
   meta: {
@@ -18,8 +18,7 @@ export const noCustomColor = {
           parsedCSS.nodes.forEach(rules => {
             rules.nodes.forEach(rule => {
               const loc = rule.source.start
-
-              if (rule.prop === 'color' && !isVariable(rule.value)) {
+              if (rule.prop === 'color' && !isOrbitToken(rule.value)) {
                 context.report({
                   loc,
                   node,

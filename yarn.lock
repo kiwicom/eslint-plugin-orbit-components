@@ -583,6 +583,13 @@
     lodash "^4.17.10"
     to-fast-properties "^2.0.0"
 
+"@kiwicom/orbit-design-tokens@^0.6.4":
+  version "0.6.4"
+  resolved "https://registry.yarnpkg.com/@kiwicom/orbit-design-tokens/-/orbit-design-tokens-0.6.4.tgz#10ae70ad667db0ea329c08e705185da88b368beb"
+  integrity sha512-8K3ZcmAv0hKqD6UICVawfOp9TKdowI1HJqkPskVHMXBTiITyOcj35vVqrsv3IBmJXLmgo56I1YvqSvOWKy9xmA==
+  dependencies:
+    ramda "^0.26.1"
+
 "@semantic-release/commit-analyzer@^6.1.0":
   version "6.1.0"
   resolved "https://registry.yarnpkg.com/@semantic-release/commit-analyzer/-/commit-analyzer-6.1.0.tgz#32bbe3c23da86e23edf072fbb276fa2f383fcb17"

@@ -6,6 +6,8 @@ const isLastDeclarationCompleted = require('./general')
 const extrapolateShortenedCommand = require('./general')
   .extrapolateShortenedCommand
 
+import { parseExpression, isToken } from './isToken'
+
 /**
  * Check if a node is a tagged template literal
  */
@@ -148,7 +150,7 @@ const interleave = (quasis, expressions, absolutePath) => {
       count += 1
     } else if (prevChar === ':') {
       // After a colon and not a pseudo-class, then guess as value
-      substitute = '$dummyValue'
+      substitute = isToken(parseExpression(expressions[i]).toString())
     } else if (nextChar === ':') {
       // Before a colon, then guess as property
       substitute = `-styled-mixin${count}`
