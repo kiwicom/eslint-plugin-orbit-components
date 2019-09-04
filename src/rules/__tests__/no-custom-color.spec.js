@@ -14,7 +14,7 @@ describe('No custom color', function() {
       //   width: 300px;\``
       // },
       {
-        code: `const test = styled.button\`
+        code: `const test = styled(Button)\`
         color: \${({ theme }) => theme.orbit.colorTextPrimary};\``
       },
       // {

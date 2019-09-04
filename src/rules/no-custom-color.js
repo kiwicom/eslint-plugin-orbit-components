@@ -17,15 +17,24 @@ export const noCustomColor = {
 
           parsedCSS.nodes.forEach(rules => {
             rules.nodes.forEach(rule => {
-              const loc = rule.source.start
               if (rule.prop === 'color' && !isOrbitToken(rule.value)) {
+                const loc = {
+                  start: {
+                    line: node.loc.start.line + rule.source.start.line - 1,
+                    column: rule.source.start.column
+                  },
+                  end: {
+                    line: node.loc.end.line - rule.source.end.line + 2,
+                    column: rule.source.end.column
+                  }
+                }
+
                 context.report({
                   loc,
                   node,
                   messageId: 'useToken'
                 })
               }
-
             })
           })
         }

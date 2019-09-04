@@ -11,7 +11,7 @@ import { parseExpression, isToken } from './isToken'
 /**
  * Check if a node is a tagged template literal
  */
-const isTaggedTemplateLiteral = node => node.type === 'TaggedTemplateExpression'
+export const isTaggedTemplateLiteral = node => node.type === 'TaggedTemplateExpression'
 
 /**
  * Check if a tagged template literal has interpolations
@@ -32,14 +32,14 @@ const isScTag = comment => /^\s*?sc-[a-z]/.test(comment)
 /**
  * Checks if an interpolation has an sc comment tag
  */
-const hasInterpolationTag = expression => {
+export const hasInterpolationTag = expression => {
   const relevantComments = retrieveStartEndComments(expression).map(
     commentObject => commentObject.value
   )
   return relevantComments.some(isScTag)
 }
 
-const extractScTagInformation = comment => {
+export const extractScTagInformation = comment => {
   const matchArray = comment.match(
     /^\s*?sc-([a-z]+)\s*(?:(?:'(.*?)')|(?:"(.*?)"))?\s*$/
   )
@@ -64,7 +64,7 @@ const interpolationTagAPI = [
 /**
  * Enact the interpolation tagging API
  */
-const parseInterpolationTag = (expression, id, absolutePath) => {
+export const parseInterpolationTag = (expression, id, absolutePath) => {
   const relevantComments = retrieveStartEndComments(expression)
   let substitute
   relevantComments.some(comment => {
@@ -127,7 +127,7 @@ const parseInterpolationTag = (expression, id, absolutePath) => {
 /**
  * Merges the interpolations in a parsed tagged template literals with the strings
  */
-const interleave = (quasis, expressions, absolutePath) => {
+export const interleave = (quasis, expressions, absolutePath) => {
   // Used for making sure our dummy mixins are all unique
   let count = 0
   let css = ''
@@ -150,7 +150,8 @@ const interleave = (quasis, expressions, absolutePath) => {
       count += 1
     } else if (prevChar === ':') {
       // After a colon and not a pseudo-class, then guess as value
-      substitute = isToken(parseExpression(expressions[i]).toString())
+
+      substitute = isToken(parseExpression(expressions[i]))
     } else if (nextChar === ':') {
       // Before a colon, then guess as property
       substitute = `-styled-mixin${count}`
@@ -196,17 +197,10 @@ const interleave = (quasis, expressions, absolutePath) => {
  *
  * TODO Cover edge cases
  */
-const getTaggedTemplateLiteralContent = (node, absolutePath) => {
+export const getTaggedTemplateLiteralContent = (node, absolutePath) => {
   if (hasInterpolations(node)) {
     return interleave(node.quasi.quasis, node.quasi.expressions, absolutePath)
   } else {
     return node.quasi.quasis[0].value.raw
   }
 }
-
-exports.isTaggedTemplateLiteral = isTaggedTemplateLiteral
-exports.getTaggedTemplateLiteralContent = getTaggedTemplateLiteralContent
-exports.interleave = interleave
-exports.hasInterpolationTag = hasInterpolationTag
-exports.parseInterpolationTag = parseInterpolationTag
-exports.extractScTagInformation = extractScTagInformation

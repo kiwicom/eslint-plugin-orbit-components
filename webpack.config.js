@@ -9,7 +9,10 @@ module.exports = {
     './src/index.js'
   ],
   output: {
-    path: path.join(__dirname, 'lib'),
+    path: path.join(
+      __dirname,
+      '../orbit-themer/node_modules/@kiwicom/eslint-plugin-orbit-components/lib'
+    ),
     filename: 'index.js',
     // // [hash:6] with add a SHA based on file changes if the env is build
     // filename:

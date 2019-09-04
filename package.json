@@ -15,6 +15,7 @@
   "author": "TOMAS HAPL",
   "main": "lib/index.js",
   "scripts": {
+    "build": "webpack --config webpack.config.js",
     "test": "jest"
   },
   "jest": {

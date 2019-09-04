@@ -1,6 +1,6 @@
 /**
- * @fileoverview eslint rules in use at kiwi.com
- * @author RICHARD IVAN
+ * @fileoverview eslint rules for @kiwicom/orbit-components
+ * @author TOMAS HAPL
  */
 
 //------------------------------------------------------------------------------
@@ -12,7 +12,9 @@
 //------------------------------------------------------------------------------
 
 import { noCustomColor } from './no-custom-color'
+import { unnecessaryText } from './unnecessary-text'
 
 export const rules = {
-  'no-custom-color': noCustomColor
+  // 'no-custom-color': noCustomColor
+  'unnecessary-text': unnecessaryText
 }
