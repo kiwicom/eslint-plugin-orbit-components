@@ -47,18 +47,23 @@ export const unnecessaryText = {
           const localName = openingEl.name.name
           if (
             localName in importedOrbitComponents &&
-            doNotUseTextIn.find(x => x === importedOrbitComponents[localName])
+            doNotUseTextIn.find(
+              x => x === importedOrbitComponents[localName]
+            ) &&
+            node.children
           ) {
-            if (node.children && node.children[0].openingElement) {
-              const children = node.children[0].openingElement.name
-              const childrenName = children.name
-
-              if (importedOrbitComponents[childrenName] === 'Text') {
-                context.report({
-                  node: node.children[0],
-                  messageId: 'unnecessaryText'
-                })
-              }
+            {
+              node.children.map(child => {
+                if (!child.openingElement) return
+                const childElement = child.openingElement.name
+                const childElementName = childElement.name
+                if (importedOrbitComponents[childElementName] === 'Text') {
+                  context.report({
+                    node: child,
+                    messageId: 'unnecessaryText'
+                  })
+                }
+              })
             }
           }
         })

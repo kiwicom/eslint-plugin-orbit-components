@@ -17,7 +17,13 @@ describe('Unnecessary text', function() {
       {
         code: `import { Text } from "@kiwicom/orbit-components";\
                import Button from "@kiwicom/orbit-components/lib/Button";\
-               const App = () => (<Button><Text>Test</Text></Button>)`,
+               const App = () => (\
+               <Button>\
+               <Text>\
+               Test\
+               </Text>\
+               </Button>\
+               )`,
         errors: [
           {
             messageId: 'unnecessaryText'
@@ -27,7 +33,9 @@ describe('Unnecessary text', function() {
       {
         code: `import { Text as Text2 } from "@kiwicom/orbit-components";\
                import Button from "@kiwicom/orbit-components/lib/Button";\
-               const App = () => (<Button><Text2>Test</Text2></Button>)`,
+               const App = () => <Button>\
+               <Text2>Test</Text2>\
+               </Button>`,
         errors: [
           {
             messageId: 'unnecessaryText'
