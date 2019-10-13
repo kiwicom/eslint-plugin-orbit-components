@@ -25,9 +25,11 @@ export default {
         node.declarations.forEach(declaration => {
           if (declaration.init && declaration.init.type === "ObjectExpression") {
             if (declaration.init.properties.length > 0) {
-              variables[declaration.id.name] = declaration.init.properties.map(
-                property => property.key.name,
-              );
+              variables[declaration.id.name] = declaration.init.properties.map(property => {
+                if (property.key && property.key.name) {
+                  return property.key.name;
+                }
+              });
             }
           }
         });
