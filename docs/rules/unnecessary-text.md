@@ -1,10 +1,10 @@
 # unnecessary-text
 
-Wrapping children of `Button` or `Heading` component into `Text` component is not necessary and breaks visual style of typography of these components. If you need to explicitly wrap it's children into some DOM element, use `<span />` instead.
+Wrapping children of `Button` or `Heading` component into `Text` component is not necessary and breaks visual style of typography of these components. If you need to explicitly wrap it's children into some DOM element, use e.g. `<span />` instead.
 
 ## Rule details
 
-The following patterns are considered warnings:
+The following patterns are considered errors:
 
 ```jsx
 import Button from "@kiwicom/orbit-components/lib/Button"
