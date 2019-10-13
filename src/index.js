@@ -1,19 +1,5 @@
-/**
- * @fileoverview eslint rules in use at kiwi.com
- * @author RICHARD IVAN
- */
+import unnecessaryText from "./rules/unnecessaryText";
 
-//------------------------------------------------------------------------------
-// Requirements
-//------------------------------------------------------------------------------
-
-//------------------------------------------------------------------------------
-// Plugin Definition
-//------------------------------------------------------------------------------
-if (module.hot) {
-  module.hot.accept('./rules/index.js', () => {
-    console.log('🔁  HMR Reloading `./app`...')
-  })
-}
-
-export { rules } from './rules/index.js'
+export const rules = {
+  "unnecessary-text": unnecessaryText,
+};
