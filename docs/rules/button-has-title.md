@@ -1,6 +1,6 @@
 # button-has-title
 
-To make `Button` or `ButtonLink` accessible for screen readers, it's necessary to either pass `children` or `title` property to it.
+`Button` or `ButtonLink` without children needs to be accessible for screen readers, therefore it's necessary to pass `title` property to it.
 
 ## Rule details
 

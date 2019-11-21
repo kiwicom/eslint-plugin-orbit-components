@@ -76,9 +76,7 @@ export default {
                 if (variables[name].find(v => v === "title")) return;
                 context.report({
                   node,
-                  message:
-                    `Property children or title property is missing on ${localName}. ` +
-                    `Use title property to add aria-label to be accessible for screen readers.`,
+                  message: `${localName} doesn't have children. Please provide title property to add aria-label, so it's accessible for screen readers.`,
                 });
               });
               /*
@@ -91,9 +89,7 @@ export default {
             ) {
               context.report({
                 node,
-                message:
-                  `Property children or title property is missing on ${localName}. ` +
-                  `Use title property to add aria-label to be accessible for screen readers.`,
+                message: `${localName} doesn't have children. Please provide title property to add aria-label, so it's accessible for screen readers.`,
               });
             }
           }
