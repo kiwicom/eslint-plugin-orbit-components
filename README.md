@@ -24,6 +24,7 @@ Then add it to your ESLint configuration:
   ],
   "rules": {
     // ...
+    "orbit-components/button-has-title": "error",
     "orbit-components/unnecessary-text": "error",
   }
 }
@@ -31,6 +32,7 @@ Then add it to your ESLint configuration:
 
 ## Supported Rules
 
+- [button-has-title](docs/rules/button-has-title.md): Enforces that `Button` and `ButtonLink` do have either `children` or `title` property.
 - [unnecessary-text](docs/rules/unnecessary-text.md): Enforces that children of `Button` or `Heading` are not wrapped in `Text` component.
 
 ## License

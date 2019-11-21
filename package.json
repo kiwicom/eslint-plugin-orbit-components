@@ -1,6 +1,6 @@
 {
   "name": "eslint-plugin-orbit-components",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Collection of ESLint rules to enforce the best usage practices of @kiwicom/orbit-components",
   "repository": {
     "type": "git",
