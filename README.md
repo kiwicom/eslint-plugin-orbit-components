@@ -1,3 +1,9 @@
+# Warning: this repository has been moved
+
+It now lives in the [kiwicom/orbit](https://github.com/kiwicom/orbit) monorepo.
+
+---
+
 # eslint-plugin-orbit-components
 
 Collection of ESLint rules to enforce the best usage practices of [`@kiwicom/orbit-components`](https://github.com/kiwicom/orbit-components/).
